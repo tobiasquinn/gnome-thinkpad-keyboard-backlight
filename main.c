@@ -4,7 +4,7 @@
 #define GNOME_DESKTOP_USE_UNSTABLE_API 1
 #include <gnome-idle-monitor.h>
 
-#define DELAY_TIME 1000
+#define DELAY_TIME 10000
 #define BACKLIGHT_SYS_FILE "/sys/class/leds/smc::kbd_backlight/brightness"
 #define BACKLIGHT_SET_COMMAND "kbdlight set %d\n"
 
