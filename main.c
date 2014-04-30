@@ -4,7 +4,7 @@
 #include <gnome-idle-monitor.h>
 
 #define SECOND (1000)
-#define DELAY_TIME 4 * SECOND
+#define DELAY_TIME 10 * SECOND
 #define FADE_INTERVAL (10)
 #define FADE_STEPS (15)
 #define BACKLIGHT_SYS_FILE "/sys/class/leds/smc::kbd_backlight/brightness"
