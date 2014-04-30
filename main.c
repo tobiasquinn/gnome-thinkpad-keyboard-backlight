@@ -4,20 +4,18 @@
 #define GNOME_DESKTOP_USE_UNSTABLE_API 1
 #include <gnome-idle-monitor.h>
 
-#define DELAY_TIME 10000
+#define DELAY_TIME 1000
 #define BACKLIGHT_SYS_FILE "/sys/class/leds/smc::kbd_backlight/brightness"
-#define BACKLIGHT_SUDO_COMMAND "echo %d | sudo tee %s\n"
+#define BACKLIGHT_SET_COMMAND "kbdlight set %d\n"
 
 static int saved_backlight_value = -1;
-//int backlight_fp; // backlight control file
 GnomeIdleMonitor *gim; // idle monitor instance
 
 #define MAX_LINE 255
 
 void set_backlight_value(int value) {
     char line[MAX_LINE];
-    sprintf(line, BACKLIGHT_SUDO_COMMAND, value, BACKLIGHT_SYS_FILE);
-    printf("VAL %d LINE:%s\n", value, line);
+    sprintf(line, BACKLIGHT_SET_COMMAND, value);
     system(line);
 }
 
@@ -41,7 +39,7 @@ void active_watch_func(GnomeIdleMonitor *monitor,
         gpointer user_data) {
     // restore the backlight
     set_backlight_value(saved_backlight_value);
-    printf("user active\n");
+    printf("user active - restored %d\n", saved_backlight_value);
 }
 
 void idle_watch_func(GnomeIdleMonitor *monitor,
