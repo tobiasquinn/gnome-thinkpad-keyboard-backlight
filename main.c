@@ -39,9 +39,9 @@ int get_backlight_value(void) {
 void active_watch_func(GnomeIdleMonitor *monitor,
         guint id,
         gpointer user_data) {
-    printf("user active\n");
     // restore the backlight
     set_backlight_value(saved_backlight_value);
+    printf("user active\n");
 }
 
 void idle_watch_func(GnomeIdleMonitor *monitor,
