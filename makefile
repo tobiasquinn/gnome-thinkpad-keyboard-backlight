@@ -1,4 +1,4 @@
-CC=g++ 	# the C compiler is gcc
+CC=gcc 	# the C compiler is gcc
 CFLAGS=-g -Wall
 LDFLAGS=
 
@@ -17,7 +17,7 @@ $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(OBJECTS) -o $@ $(LDFLAGS)
 
 .c.o:
-	$(CC) $(CFLAGS) $< -o $@
+	$(CC) -c $(CFLAGS) $< -o $@
 
 clean:
-	rm $(OBJECTS) $(EXECUTABLE)
+	rm -f $(OBJECTS) $(EXECUTABLE)
