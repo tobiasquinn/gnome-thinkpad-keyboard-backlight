@@ -7,7 +7,7 @@ OBJECTS = $(SOURCES:.c=.o)
 
 EXECUTABLE = gnome-macbook-keyboard-backlight
 
-CFLAGS  += $(shell pkg-config --cflags --libs gnome-desktop-3.0)
+CFLAGS  += $(shell pkg-config --cflags gnome-desktop-3.0)
 LDFLAGS += $(shell pkg-config --libs gnome-desktop-3.0)
 CFLAGS  += -I/usr/include/gnome-desktop-3.0/libgnome-desktop
 

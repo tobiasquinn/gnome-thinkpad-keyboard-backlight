@@ -1,7 +1,7 @@
 # Author: Tobias Quinn <tobias@tobiasquinn.com>
 # Maintainer: Tobias Quinn <tobias@tobiasquinn.com>
 pkgname=gnome-macbook-keyboard-backlight-git
-pkgver=20140430
+pkgver=20140501
 pkgrel=1
 pkgdesc="Control MacBook Pro 11,1 backlight on a 10 second timer"
 arch=('i686' 'x86_64')
