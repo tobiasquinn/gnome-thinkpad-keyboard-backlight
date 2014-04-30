@@ -5,7 +5,7 @@ LDFLAGS=
 SOURCES = main.c
 OBJECTS = $(SOURCES:.c=.o)
 
-EXECUTABLE = keyboard-backlight-idler-gnome
+EXECUTABLE = gnome-macbook-keyboard-backlight
 
 CFLAGS  += $(shell pkg-config --cflags --libs gnome-desktop-3.0)
 LDFLAGS += $(shell pkg-config --libs gnome-desktop-3.0)

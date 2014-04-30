@@ -1,8 +1,0 @@
-
-[Desktop Entry]
-Type=Application
-Exec=/usr/bin/keyboard-backlight-idler-gnome
-Hidden=false
-OnlyShowIn=GNOME;
-Name=Keyboard Backlight Idler
-Comment=Turn Macbook Pro 11,1 Keyboard Backlight Off after 10 seconds
