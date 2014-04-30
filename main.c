@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
 #define GNOME_DESKTOP_USE_UNSTABLE_API 1
@@ -28,7 +27,7 @@ int get_backlight_value(void) {
     int backlight_fp = open(BACKLIGHT_SYS_FILE, O_RDONLY);
     n = read(backlight_fp, line, MAX_LINE);
     if (n == -1)
-        printf("File read error\n");
+        g_print("File read error\n");
     n = atoi(line);
     close(backlight_fp);
     return n;
@@ -39,26 +38,26 @@ void active_watch_func(GnomeIdleMonitor *monitor,
         gpointer user_data) {
     // restore the backlight
     set_backlight_value(saved_backlight_value);
-    printf("user active - restored %d\n", saved_backlight_value);
+    g_print("user active - restored %d\n", saved_backlight_value);
 }
 
 void idle_watch_func(GnomeIdleMonitor *monitor,
         guint id,
         gpointer user_data) {
-    printf("user idle\n");
+    g_print("user idle\n");
     // we want to save the existing backlight value
     saved_backlight_value = get_backlight_value();
-    printf("saved backlight value %d\n", saved_backlight_value);
+    g_print("saved backlight value %d\n", saved_backlight_value);
     // and turn it down to zero
     set_backlight_value(0);
     gnome_idle_monitor_add_user_active_watch(gim,
             &active_watch_func,
-            0,
-            0);
+            NULL,
+            NULL);
 }
 
 int main(void) {
-    printf("Starting idle time detect\n");
+    g_print("Starting idle time detect\n");
 
     GMainLoop *loop;
 
@@ -67,8 +66,8 @@ int main(void) {
     gnome_idle_monitor_add_idle_watch(gim,
             DELAY_TIME,
             &idle_watch_func,
-            0,
-            0);
+            NULL,
+            NULL);
 
     loop = g_main_loop_new(NULL, FALSE);
     g_main_loop_run(loop);
