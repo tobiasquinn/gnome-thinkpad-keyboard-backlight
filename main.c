@@ -5,7 +5,7 @@
 
 #define SECOND (1000)
 #define DELAY_TIME 10 * SECOND
-#define FADE_INTERVAL (10)
+#define FADE_INTERVAL (50000)
 #define FADE_STEPS (15)
 #define BACKLIGHT_SYS_FILE "/sys/class/leds/smc::kbd_backlight/brightness"
 #define BACKLIGHT_SET_COMMAND "kbdlight set %d\n"
