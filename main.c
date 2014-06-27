@@ -67,16 +67,16 @@ void active_watch_func(GnomeIdleMonitor *monitor,
         gpointer user_data) {
     // restore the backlight
     fade_up_backlight(saved_backlight_value);
-    g_print("user active - restored %d\n", saved_backlight_value);
+//    g_print("user active - restored %d\n", saved_backlight_value);
 }
 
 void idle_watch_func(GnomeIdleMonitor *monitor,
         guint id,
         gpointer user_data) {
-    g_print("user idle\n");
+//    g_print("user idle\n");
     // we want to save the existing backlight value
     saved_backlight_value = get_backlight_value();
-    g_print("saved backlight value %d\n", saved_backlight_value);
+//    g_print("saved backlight value %d\n", saved_backlight_value);
     // and turn it down to zero
     fade_off_backlight();
     gnome_idle_monitor_add_user_active_watch(gim,
