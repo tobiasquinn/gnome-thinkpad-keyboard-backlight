@@ -7,8 +7,8 @@
 #define DELAY_TIME 10 * SECOND
 #define FADE_INTERVAL (50000)
 #define FADE_STEPS (1)
-#define BACKLIGHT_READ_COMMAND "sudo ./ThinkLight/ThinkLight r"
-#define BACKLIGHT_SET_COMMAND "sudo ./ThinkLight/ThinkLight %d\n"
+#define BACKLIGHT_READ_COMMAND "ThinkLight r"
+#define BACKLIGHT_SET_COMMAND  "ThinkLight %d\n"
 
 static int saved_backlight_value = 2;
 GnomeIdleMonitor *gim; // idle monitor instance

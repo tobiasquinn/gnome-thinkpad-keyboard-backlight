@@ -10,6 +10,8 @@ https://gist.github.com/hadess/6847281
 There is an archlinux package that can be built using makepkg and uses the
 master of the github repository.
 
+NOTE: To use this successfully the ThinkLight executable must be set chmod +s
+
 It is GPL3, please see the LICENSE file
 
 (c) Tobias Quinn, March 2016
