@@ -6,11 +6,11 @@
 #define SECOND (1000)
 #define DELAY_TIME 10 * SECOND
 #define FADE_INTERVAL (50000)
-#define FADE_STEPS (15)
-#define BACKLIGHT_SYS_FILE "/sys/class/leds/smc::kbd_backlight/brightness"
-#define BACKLIGHT_SET_COMMAND "kbdlight set %d\n"
+#define FADE_STEPS (1)
+#define BACKLIGHT_READ_COMMAND "sudo ./ThinkLight/ThinkLight r"
+#define BACKLIGHT_SET_COMMAND "sudo ./ThinkLight/ThinkLight %d\n"
 
-static int saved_backlight_value = 255;
+static int saved_backlight_value = 2;
 GnomeIdleMonitor *gim; // idle monitor instance
 
 #define MAX_LINE 255
@@ -23,19 +23,19 @@ void set_backlight_value(int value) {
 
 int get_backlight_value(void) {
     // read the SYS_FILE
-    int n;
     char line[MAX_LINE];
+    FILE *fp;
 
-    // open the backlight control file
-    int backlight_fp = open(BACKLIGHT_SYS_FILE, O_RDONLY);
-    n = read(backlight_fp, line, MAX_LINE);
-    if (n == -1) {
-        g_print("File read error\n");
-        return saved_backlight_value;
+    fp = popen(BACKLIGHT_READ_COMMAND, "r");
+    if (fp == NULL) {
+      g_print("Failed to run command\n");
+      exit(1);
     }
-    n = atoi(line);
-    close(backlight_fp);
-    return n;
+
+    while (fgets(line, sizeof(line), fp) != NULL) {
+      g_print("read:%s\n", line);
+    }
+    return atoi(line);
 }
 
 void fade_off_backlight(void) {
@@ -89,18 +89,18 @@ int main(void) {
     g_print("Starting idle time detect\n");
 
     GMainLoop *loop;
-
+    
     gim = gnome_idle_monitor_new();
-
+    
     gnome_idle_monitor_add_idle_watch(gim,
-            DELAY_TIME,
-            &idle_watch_func,
-            NULL,
-            NULL);
-
+                                      DELAY_TIME,
+                                      &idle_watch_func,
+                                      NULL,
+                                      NULL);
+    
     loop = g_main_loop_new(NULL, FALSE);
     g_main_loop_run(loop);
     g_main_loop_unref(loop);
-
+    
     return 0;
 }

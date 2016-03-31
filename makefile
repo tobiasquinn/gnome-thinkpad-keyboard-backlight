@@ -5,7 +5,7 @@ LDFLAGS=
 SOURCES = main.c
 OBJECTS = $(SOURCES:.c=.o)
 
-EXECUTABLE = gnome-macbook-keyboard-backlight
+EXECUTABLE = gnome-thinkpad-keyboard-backlight
 
 CFLAGS  += $(shell pkg-config --cflags gnome-desktop-3.0)
 LDFLAGS += $(shell pkg-config --libs gnome-desktop-3.0)

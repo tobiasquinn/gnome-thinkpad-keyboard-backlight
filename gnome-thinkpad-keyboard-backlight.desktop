@@ -1,0 +1,8 @@
+
+[Desktop Entry]
+Type=Application
+Exec=/usr/bin/gnome-thinkpad-keyboard-backlight
+Hidden=false
+OnlyShowIn=GNOME;
+Name=ThinkPad Keyboard Backlight Idler
+Comment=Turn ThinkPad Keyboard Backlight off after 10 seconds
