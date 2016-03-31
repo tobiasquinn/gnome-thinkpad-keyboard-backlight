@@ -21,6 +21,7 @@
 #include <errno.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 
 char levels[] = {
 	0x03,
@@ -32,7 +33,7 @@ static void
 usage (char **argv)
 {
 	g_print ("%s [level]\n", argv[0]);
-	g_print ("Where level is between 1 and 3\n");
+	g_print ("Where level is between 0,1,2 or r for read\n");
 }
 
 int main (int argc, char **argv)
@@ -44,11 +45,7 @@ int main (int argc, char **argv)
 		usage (argv);
 		return 1;
 	}
-	level = atoi(argv[1]);
-	if (level < 0 || level > 3) {
-		usage (argv);
-		return 1;
-	}
+        //        g_print("%d level", level);
 
 	fd = open ("/sys/kernel/debug/ec/ec0/io", O_RDWR);
 	if (fd < 0) {
@@ -59,10 +56,22 @@ int main (int argc, char **argv)
 		g_print ("seek: %s\n", g_strerror (errno));
 		return 1;
 	}
-	if (write (fd, &levels[level], 1) < 0) {
-		g_print ("write: %s\n", g_strerror (errno));
-		return 1;
-	}
+        if (strncmp(argv[1], "r", 1) == 0) {
+            char result;
+            read(fd, &result, 1);
+            result = (result & 0xc0) >> 6;
+            g_print("%d\n", result);
+        } else {
+          level = atoi(argv[1]);
+          if (level < 0 || level > 3) {
+            usage (argv);
+            return 1;
+          }
+          if (write (fd, &levels[level], 1) < 0) {
+            g_print ("write: %s\n", g_strerror (errno));
+            return 1;
+          }
+        }
 
 	return 0;
 }
