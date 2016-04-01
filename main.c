@@ -5,7 +5,7 @@
 
 #define SECOND (1000)
 #define DELAY_TIME 10 * SECOND
-#define FADE_INTERVAL (50000)
+#define FADE_INTERVAL (250000)
 #define FADE_STEPS (1)
 #define BACKLIGHT_READ_COMMAND "ThinkLight r"
 #define BACKLIGHT_SET_COMMAND  "ThinkLight %d\n"
@@ -33,7 +33,7 @@ int get_backlight_value(void) {
     }
 
     while (fgets(line, sizeof(line), fp) != NULL) {
-//      g_print("read:%s\n", line);
+      //      g_print("read:%s\n", line);
     }
     return atoi(line);
 }
@@ -41,7 +41,7 @@ int get_backlight_value(void) {
 void fade_off_backlight(void) {
     // fade the backlight down
     int value = get_backlight_value();
-    int fade_step = value / FADE_STEPS;
+    int fade_step = 1;//value / FADE_STEPS;
     while (value > 0) {
         value -= fade_step;
         value = MAX(0, value);
@@ -53,7 +53,7 @@ void fade_off_backlight(void) {
 void fade_up_backlight(int target) {
     // fade the backlight up (we assume from 0)
     int value = 0;
-    int fade_step = target / FADE_STEPS;
+    int fade_step = 1;//target / FADE_STEPS;
     while (value < target) {
         value += fade_step;
         value = MIN(target, value);
