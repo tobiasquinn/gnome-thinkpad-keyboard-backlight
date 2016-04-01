@@ -60,7 +60,6 @@ int main (int argc, char **argv)
             char result;
             read(fd, &result, 1);
             result = (result & 0xc0) >> 6;
-            g_print("%d\n", result);
         } else {
           level = atoi(argv[1]);
           if (level < 0 || level > 3) {

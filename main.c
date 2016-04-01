@@ -33,7 +33,7 @@ int get_backlight_value(void) {
     }
 
     while (fgets(line, sizeof(line), fp) != NULL) {
-      g_print("read:%s\n", line);
+//      g_print("read:%s\n", line);
     }
     return atoi(line);
 }
