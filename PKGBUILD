@@ -35,6 +35,7 @@ package() {
   install -D -m755 ${srcdir}/$_gitname/ThinkLight/ThinkLight "${pkgdir}/usr/bin/ThinkLight" || return 1
   install -D -m755 ${srcdir}/$_gitname/gnome-thinkpad-keyboard-backlight "${pkgdir}/usr/bin/gnome-thinkpad-keyboard-backlight" || return 1
   install -D -m644 ${srcdir}/$_gitname/gnome-thinkpad-keyboard-backlight.desktop "${pkgdir}/etc/xdg/autostart/gnome-thinkpad-keyboard-backlight.desktop" || return 1
+  install -D -m644 ${srcdir}/$_gitname/gnome-thinkpad-keyboard-backlight.conf "${pkgdir}/etc/modprobe.d/gnome-thinkpad-keyboard-backlight.conf" || return 1
 }
 
 # vim:set ts=2 sw=2 et:
